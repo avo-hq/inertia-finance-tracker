@@ -53,7 +53,7 @@ const Home = () => {
 
       {/* Container for Head component */}
       <Container>
-        <Head title="Home - Financier" />
+        <Head title="Home - Avonomy" />
       </Container>
     </div>
   )

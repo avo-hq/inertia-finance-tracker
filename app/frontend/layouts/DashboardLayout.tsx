@@ -9,15 +9,10 @@ import {
   MenuItems,
   TransitionChild,
 } from '@headlessui/react'
+import {ChevronDown, Home, Settings, X, Tag, Tickets, Menu as MenuIcon, Search, Bell} from "lucide-react"
 
-import {ChevronDown, Home, Settings, X, Tickets, Menu as MenuIcon, Search, Bell} from "lucide-react"
-import {usePage} from "@inertiajs/react"
-
-
-const userNavigation = [
-  { name: 'Your profile', href: '#' },
-  { name: 'Sign out', href: '#' },
-]
+import {usePage, Link} from "@inertiajs/react"
+import FlashMessages from "~/components/FlashMessages"
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(' ')
@@ -30,6 +25,7 @@ export default function DashboardLayout({children}) {
   const navigation = [
     { name: 'Dashboard', href: '/dashboard', icon: Home },
     { name: 'Transactions', href: '/transactions', icon: Tickets },
+    { name: 'Categories', href: '/categories', icon: Tag },
   ].map(item => ({
     ...item,
     current: url.startsWith(item.href)
@@ -37,14 +33,6 @@ export default function DashboardLayout({children}) {
 
   return (
     <>
-      {/*
-        This example requires updating your template:
-
-        ```
-        <html class="h-full bg-white">
-        <body class="h-full">
-        ```
-      */}
       <div>
         <Dialog open={sidebarOpen} onClose={setSidebarOpen} className="relative z-50 lg:hidden">
           <DialogBackdrop
@@ -68,7 +56,7 @@ export default function DashboardLayout({children}) {
               {/* Sidebar component, swap this element with another sidebar if you like */}
               <div className="flex grow flex-col gap-y-5 overflow-y-auto bg-indigo-600 px-6 pb-4">
                 <div className="flex h-16 shrink-0 items-center">
-                  <h2 className="text-white text-2xl font-bold">Financier</h2>
+                  <h2 className="text-white text-2xl font-bold">Avonomy</h2>
                 </div>
                 <nav className="flex flex-1 flex-col">
                   <ul role="list" className="flex flex-1 flex-col gap-y-7">
@@ -76,7 +64,7 @@ export default function DashboardLayout({children}) {
                       <ul role="list" className="-mx-2 space-y-1">
                         {navigation.map((item) => (
                           <li key={item.name}>
-                            <a
+                            <Link
                               href={item.href}
                               className={classNames(
                                 item.current
@@ -90,7 +78,7 @@ export default function DashboardLayout({children}) {
                                 size={16}
                               />
                               {item.name}
-                            </a>
+                            </Link>
                           </li>
                         ))}
                       </ul>
@@ -119,7 +107,7 @@ export default function DashboardLayout({children}) {
           {/* Sidebar component, swap this element with another sidebar if you like */}
           <div className="flex grow flex-col gap-y-5 overflow-y-auto bg-emerald-900 px-6 pb-4">
             <div className="flex h-16 shrink-0 items-center">
-              <h2 className="text-white text-2xl font-bold">Financier</h2>
+              <h2 className="text-white text-2xl font-bold">Avonomy</h2>
             </div>
             <nav className="flex flex-1 flex-col">
               <ul role="list" className="flex flex-1 flex-col gap-y-7">
@@ -127,12 +115,12 @@ export default function DashboardLayout({children}) {
                   <ul role="list" className="-mx-2 space-y-1">
                     {navigation.map((item) => (
                       <li key={item.name}>
-                        <a
+                        <Link
                           href={item.href}
                           className={classNames(
                             item.current
                               ? 'bg-emerald-800 text-white'
-                              : 'text-emerald-200 hover:bg-emerald-800 hover:text-white',
+                              : 'text-emerald-200 hover:bg-emerald-800 hover:text-white transition-colors duration-300',
                             'group flex gap-x-3 rounded-md p-2 text-sm/6 font-semibold',
                           )}
                         >
@@ -140,12 +128,12 @@ export default function DashboardLayout({children}) {
                             aria-hidden="true"
                             strokeWidth={2}
                             className={classNames(
-                              item.current ? 'text-white' : 'text-emerald-200 group-hover:text-white',
+                              item.current ? 'text-white' : 'text-emerald-300 group-hover:text-white transition-colors duration-300',
                               'size-5 shrink-0',
                             )}
                           />
                           {item.name}
-                        </a>
+                        </Link>
                       </li>
                     ))}
                   </ul>
@@ -154,7 +142,7 @@ export default function DashboardLayout({children}) {
                 <li className="mt-auto">
                   <a
                     href="#"
-                    className="group -mx-2 flex gap-x-3 rounded-md p-2 text-sm/6 font-semibold text-emerald-200 hover:bg-emerald-800 hover:text-white"
+                    className="group -mx-2 flex gap-x-3 rounded-md p-2 text-sm/6 font-semibold text-emerald-300 hover:bg-emerald-800 hover:text-white"
                   >
                     <Settings
                       aria-hidden="true"
@@ -202,7 +190,7 @@ export default function DashboardLayout({children}) {
                 <div aria-hidden="true" className="hidden lg:block lg:h-6 lg:w-px lg:bg-gray-900/10" />
 
                 {/* Profile dropdown */}
-                <Menu as="div" className="relative">
+                <Menu as="div">
                   <MenuButton className="-m-1.5 flex items-center p-1.5">
                     <span className="sr-only">Open user menu</span>
                     <img
@@ -219,21 +207,22 @@ export default function DashboardLayout({children}) {
                   </MenuButton>
                   <MenuItems
                     transition
-                    className="absolute right-0 z-10 mt-2.5 w-32 origin-top-right rounded-md bg-white py-2 ring-1 shadow-lg ring-gray-900/5 transition focus:outline-hidden data-closed:scale-95 data-closed:transform data-closed:opacity-0 data-enter:duration-100 data-enter:ease-out data-leave:duration-75 data-leave:ease-in"
+                    className="absolute right-0 z-10 mt-2.5 w-48 origin-top-right rounded-md bg-white py-2 ring-1 shadow-lg ring-gray-900/5 transition focus:outline-hidden data-closed:scale-95 data-closed:transform data-closed:opacity-0 data-enter:duration-100 cursor:pointer data-enter:ease-out data-leave:duration-75 data-leave:ease-in"
                   >
-                    {userNavigation.map((item) => (
-                      <MenuItem as="a" href={item.href} key={item.name} className="block px-3 py-1 text-sm/6 text-gray-900 data-focus:bg-gray-50 data-focus:outline-hidden">
-                        {item.name}
-                      </MenuItem>
-                    ))}
+                      <Link href="/session" as="button" method="delete" className="block px-4 py-2 text-sm/6 text-gray-900 data-focus:bg-gray-50 data-focus:outline-hidden">
+                        Sign out
+                      </Link>
                   </MenuItems>
                 </Menu>
               </div>
             </div>
           </div>
 
-          <main className="py-10">
-            <div className="px-4 sm:px-6 lg:px-8">{/* Your content */}</div>
+          <main>
+            <FlashMessages />
+            <div className="py-6 px-4 sm:px-6">
+              {children}
+            </div>
           </main>
         </div>
       </div>

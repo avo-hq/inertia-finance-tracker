@@ -12,7 +12,6 @@ const New = () => {
   const handleSubmit = (ev) => {
     ev.preventDefault();
 
-    console.log(data)
     post('/session', {
       preserveScroll: true,
       preserveState: true,
@@ -20,7 +19,6 @@ const New = () => {
         reset()
       },
       onError: (errors) => {
-        console.log(errors)
       }
     })
   }
