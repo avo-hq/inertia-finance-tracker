@@ -6,6 +6,6 @@ class PagesController < ApplicationController
   end
 
   def dashboard
-    render inertia: "Dashboard"
+    render inertia: "Dashboard/Index"
   end
 end
