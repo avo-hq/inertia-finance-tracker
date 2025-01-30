@@ -6,7 +6,7 @@ const NavBar = () => {
     <nav className="px-2 py-4 bg-white border-b border-zinc-200 shadow-sm">
       <Container>
         <div className="flex justify-between items-center">
-          <Link href="/" className="text-emerald-900 font-bold text-xl">Financier</Link>
+          <Link href="/" className="text-emerald-900 font-bold text-xl">Avonomy</Link>
           <div className="flex items-center space-x-6">
             <Link href="/dashboard" className="text-slate-900">Dashboard</Link>
             <Link href="/session/new" className="text-slate-900">Sign In</Link>
