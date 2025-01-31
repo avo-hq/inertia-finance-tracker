@@ -2,7 +2,7 @@ import clsx from 'clsx';
 
 const TextInput = ({label, name, value, onChange, errors, required = false}) => {
   return (
-    <>
+    <div className="space-y-1.5">
       <label htmlFor="description" className={clsx('flex text-sm w-full font-medium text-gray-900', errors ? 'text-rose-500' : 'text-gray-900')}>
         {label}
       </label>
@@ -19,7 +19,7 @@ const TextInput = ({label, name, value, onChange, errors, required = false}) => 
         )}
       />
       {errors && <p className="text-rose-500 text-sm mt-1">{`${label} ${errors}`}</p>}
-    </>
+    </div>
   )
 }
 

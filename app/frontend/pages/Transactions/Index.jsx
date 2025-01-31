@@ -19,6 +19,7 @@ const Index = ({transactions}) => {
         </div>
         <div>
           <Button size="sm" onClick={() => setFormDialogOpen(true)}>Record Transaction</Button>
+          <FormDialog open={formDialogOpen} setOpen={setFormDialogOpen} />
         </div>
       </div>
     </div>
