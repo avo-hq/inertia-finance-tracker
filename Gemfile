@@ -42,3 +42,4 @@ gem "vite_rails", "~> 3.0"
 
 gem 'friendly_id', '~> 5.5.0'
 gem 'pagy'
+gem 'money-rails'
