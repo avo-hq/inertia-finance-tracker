@@ -1,0 +1,19 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  user: one
+  category: one
+  notes: MyText
+  amount_cents: 1
+  amount_currency: MyString
+  transaction_type: MyString
+  date: 2025-01-30 21:41:44
+
+two:
+  user: two
+  category: two
+  notes: MyText
+  amount_cents: 1
+  amount_currency: MyString
+  transaction_type: MyString
+  date: 2025-01-30 21:41:44
