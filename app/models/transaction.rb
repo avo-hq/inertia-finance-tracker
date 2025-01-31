@@ -31,6 +31,15 @@ class Transaction < ApplicationRecord
 
   validates :amount_cents, presence: true
   validates :transaction_type, presence: true, inclusion: { in: TRANSACTION_TYPES }
-  validates :description, presence: true
   validates :date, presence: true
+
+  monetize :amount_cents, as: :amount
+
+  scope :descending_by_date, -> { order(date: :desc) }
+  scope :income, -> { where(transaction_type: 'income') }
+  scope :expense, -> { where(transaction_type: 'expense') }
+
+  def category_name
+    category.name
+  end
 end
