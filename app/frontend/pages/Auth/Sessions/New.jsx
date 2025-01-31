@@ -1,7 +1,6 @@
 import Layout from "~/layouts/AppLayout"
-import Container from "~/components/Container"
 
-import {useForm, router} from '@inertiajs/react'
+import {useForm} from '@inertiajs/react'
 
 const New = () => {
   const {post, data, setData, processing, reset} = useForm({

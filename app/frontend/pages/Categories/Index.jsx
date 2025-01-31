@@ -7,7 +7,6 @@ import {Plus} from "lucide-react"
 const Index = ({categories}) => {
   const [formDialogOpen, setFormDialogOpen] = useState(false)
 
-
   return <div>
     <Head title="Transaction Categories - Avonomy" />
     <div className="flex items-center justify-between">
@@ -27,9 +26,14 @@ const Index = ({categories}) => {
     <div className="mt-8">
       <div className="grid grid-cols-12 gap-x-6 gap-y-8">
         {categories.map((category) => (
-          <div key={category.id} className="col-span-2">
+          <div key={category.id} className="col-span-6 md:col-span-4 lg:col-span-3">
             <div className="bg-white p-4 rounded-md border border-zinc-300">
-              <h2 className="text-lg font-medium text-zinc-900">{category.name}</h2>
+              <div className="flex items-center space-x-2">
+                <h2 className="text-lg font-medium text-zinc-900">{category.name}</h2>
+
+                <div className="w-3 h-3 rounded-full" style={{backgroundColor: category.color_code}}></div>
+              </div>
+              <p className="text-sm text-zinc-500">{category.description}</p>
             </div>
           </div>
         ))}
