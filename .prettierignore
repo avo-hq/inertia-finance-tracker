@@ -1,0 +1,7 @@
+./app/views
+./app/controllers
+./app/helpers
+./app/assets
+./app/jobs
+./app/mailers
+./app/models
