@@ -1,8 +1,9 @@
 import {useState} from "react";
 
 import DashboardLayout from "../../layouts/DashboardLayout";
-import Button from "../../components/Button";
+import Table from "../../components/Table";
 import FormDialog from "./FormDialog";
+import Button from "../../components/Button";
 
 
 const Index = ({transactions}) => {
@@ -22,6 +23,7 @@ const Index = ({transactions}) => {
           <FormDialog open={formDialogOpen} setOpen={setFormDialogOpen} />
         </div>
       </div>
+      <Table transactions={transactions} />
     </div>
   )
 }

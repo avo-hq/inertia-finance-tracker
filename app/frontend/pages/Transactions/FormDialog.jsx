@@ -1,8 +1,10 @@
 import { Dialog, DialogBackdrop, DialogPanel, DialogTitle } from '@headlessui/react'
 import { useForm, usePage } from '@inertiajs/react'
-import TextInput from '../../components/TextInput'
+
 import FormGroup from '../../components/FormGroup'
-import Combobox from '../../components/Combobox'
+import FormErrors from '../../components/FormErrors'
+import TextAreaField from '../../components/TextAreaField'
+import MoneyField from '../../components/MoneyField'
 import Button from '../../components/Button'
 import Select from '../../components/Select'
 
@@ -12,15 +14,18 @@ const FormDialog = ({open, setOpen, onSubmit}) => {
   const {post, data, setData, processing, reset} = useForm({
     category_id: categories[0].id,
     amount_cents: 100,
-    transaction_type: transaction_types[0],
-    description: '',
+    transaction_type: transaction_types[0].id,
+    notes: '',
     date: '',
   });
 
-  const handleSubmit = () => {
+  const handleSubmit = (evt) => {
+    evt.preventDefault();
+
     post('/transactions', {
       transform: (data) => {
         data.user_id = current_user.id
+        data.transaction_type = data.transaction_type.id
         return data
       },
       onSuccess: () => {
@@ -54,12 +59,35 @@ const FormDialog = ({open, setOpen, onSubmit}) => {
               </div>
 
               <form onSubmit={handleSubmit} className="mt-4">
-                <FormGroup>
-                  <TextInput label="Name" name="name" value={data.name} onChange={(ev) => setData('name', ev.target.value)} errors={errors && errors.name} />
+                <FormErrors errors={errors} />
+                <FormGroup className="mb-3">
+                  <MoneyField
+                    label="Amount"
+                    name="amount_cents"
+                    value={data.amount_cents}
+                    onChange={(e) => setData('amount_cents', e.target.value)}
+                    errors={errors?.amount_cents}
+                    required
+                    placeholder="0.00"
+                    currency="USD"
+                  />
                 </FormGroup>
-                <FormGroup columns={2} className="mt-3">
+                <FormGroup columns={2} className="mb-3">
                   <Select label="Category" name="category_id" options={categories} selectedId={data.category_id} onChange={(category) => setData('category_id', category.id)} errors={errors && errors.category_id} />
-                  <Select label="Type" name="transaction_type" options={transaction_types} onChange={(transactionType) => setData('transaction_type', transactionType.id)} selectedId={transaction_types[0].id} errors={errors && errors.transaction_type} />
+                  <Select label="Type" name="transaction_type" options={transaction_types} onChange={(transactionType) => {
+                    setData('transaction_type', transactionType.id)
+                  }} selectedId={transaction_types[0].id} errors={errors && errors.transaction_type} />
+                </FormGroup>
+                <FormGroup>
+                <TextAreaField
+                  label="Notes"
+                  name="notes"
+                  value={data.notes}
+                  onChange={(e) => setData('notes', e.target.value)}
+                  errors={errors?.notes}
+                  rows={2}
+                  placeholder="Add notes if you want..."
+                />
                 </FormGroup>
                 <Button type="submit" variant="primary" rounded="md" size="sm" fullWidth className="mt-6" isLoading={processing}>
                   Create
