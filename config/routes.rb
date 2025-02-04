@@ -14,6 +14,7 @@ Rails.application.routes.draw do
   get "dashboard" => "pages#dashboard"
   resources :categories
   resources :transactions
+  resource :profile, only: [:show, :update]
 
   # Defines the root path route ("/")
   root "pages#home"
