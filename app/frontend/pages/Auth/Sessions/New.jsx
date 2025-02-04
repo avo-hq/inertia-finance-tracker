@@ -1,37 +1,32 @@
+import {useForm, usePage} from '@inertiajs/react'
+
+import FormErrors from '~/components/FormErrors'
 import SiteLayout from "~/layouts/SiteLayout"
 
-import {useForm} from '@inertiajs/react'
-
 const New = () => {
+  const {errors} = usePage().props;
   const {post, data, setData, processing, reset} = useForm({
     email_address: '',
     password: '',
   })
 
   const handleSubmit = (ev) => {
-    ev.preventDefault();
+    ev.preventDefault()
 
-    post('/session', {
-      preserveScroll: true,
-      preserveState: true,
-      onSuccess: () => {
-        reset()
-      },
-      onError: (errors) => {
-      }
-    })
+    post('/session')
   }
 
   return(
     <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">
-    <div className="sm:mx-auto sm:w-full sm:max-w-sm">
-      <h2 className="mt-10 text-center text-3xl font-bold tracking-tight text-gray-900">
-        Sign in to your account
-      </h2>
-    </div>
+      <div className="sm:mx-auto sm:w-full sm:max-w-sm">
+        <h2 className="mt-10 text-center text-3xl font-bold tracking-tight text-gray-900">
+          Sign in to your account
+        </h2>
+      </div>
 
     <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
       <form onSubmit={handleSubmit} className="space-y-6">
+        <FormErrors errors={errors} />
         <div>
           <label htmlFor="email" className="block text-sm/6 font-medium text-gray-900">
             Email address
@@ -90,9 +85,9 @@ const New = () => {
         <a href="#" className="font-semibold text-emerald-900 hover:text-emerald-800">
           Sign up for free
         </a>
-      </p>
+        </p>
+      </div>
     </div>
-  </div>
   )
 }
 
