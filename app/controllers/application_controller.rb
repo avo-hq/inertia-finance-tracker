@@ -11,7 +11,7 @@ class ApplicationController < ActionController::Base
   end
 
   def inertia_user
-    return nil unless current_user
+    return nil unless current_user.present?
     {
       id: current_user.try(:id),
       email: current_user.try(:email_address),
