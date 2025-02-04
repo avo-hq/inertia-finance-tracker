@@ -1,6 +1,8 @@
 GEM
   remote: https://rubygems.org/
   specs:
+    action_policy (0.7.3)
+      ruby-next-core (>= 1.0)
     actioncable (8.0.1)
       actionpack (= 8.0.1)
       activesupport (= 8.0.1)
@@ -119,6 +121,8 @@ GEM
       raabro (~> 1.4)
     globalid (1.2.1)
       activesupport (>= 6.1)
+    groupdate (6.5.1)
+      activesupport (>= 7)
     i18n (1.14.7)
       concurrent-ruby (~> 1.0)
     inertia_rails (3.6.0)
@@ -291,6 +295,7 @@ GEM
       rubocop-minitest
       rubocop-performance
       rubocop-rails
+    ruby-next-core (1.1.1)
     ruby-progressbar (1.13.0)
     rubyzip (2.4.1)
     securerandom (0.4.1)
@@ -381,6 +386,7 @@ PLATFORMS
   x86_64-linux-musl
 
 DEPENDENCIES
+  action_policy
   annotaterb
   bcrypt (~> 3.1.7)
   bootsnap
@@ -388,6 +394,7 @@ DEPENDENCIES
   capybara
   debug
   friendly_id (~> 5.5.0)
+  groupdate
   inertia_rails (~> 3.6)
   jbuilder
   kamal
