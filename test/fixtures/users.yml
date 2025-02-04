@@ -4,12 +4,14 @@
 #
 # Table name: users
 #
-#  id              :integer          not null, primary key
-#  email_address   :string           not null
-#  password_digest :string           not null
-#  username        :string
-#  created_at      :datetime         not null
-#  updated_at      :datetime         not null
+#  id               :integer          not null, primary key
+#  balance_cents    :integer
+#  balance_currency :string
+#  email_address    :string           not null
+#  password_digest  :string           not null
+#  username         :string
+#  created_at       :datetime         not null
+#  updated_at       :datetime         not null
 #
 # Indexes
 #
