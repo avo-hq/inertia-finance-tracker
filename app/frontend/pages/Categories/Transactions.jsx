@@ -24,9 +24,6 @@ export default function Table({transactions}) {
                   <th scope="col" className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
                     Date
                   </th>
-                  <th scope="col" className="relative py-3.5 pr-4 pl-3 sm:pr-0">
-                    <span className="sr-only">Edit</span>
-                  </th>
                 </tr>
               </thead>
               <tbody className="divide-y divide-gray-200">
@@ -38,17 +35,12 @@ export default function Table({transactions}) {
                     <td className="px-3 py-4 text-sm whitespace-nowrap text-zinc-600">
                       <div className="flex items-center space-x-3">
                         <div className="w-2 h-2 rounded-full" style={{ backgroundColor: transaction.category_color_code }}></div>
-                        <Link href={`/categories/${transaction.category_slug}`}>{transaction.category_name}</Link>
+                        <span>{transaction.category_name}</span>
                       </div>
                     </td>
                     <td className="px-3 py-4 text-sm whitespace-nowrap text-gray-500">{transaction.notes}</td>
                     <td className="px-3 py-4 text-sm whitespace-nowrap text-gray-500">{transaction.amount}</td>
                     <td className="px-3 py-4 text-sm whitespace-nowrap text-gray-500">{transaction.date}</td>
-                    <td className="relative py-4 pr-4 pl-3 text-right text-sm whitespace-nowrap sm:pr-0">
-                      <Link href={`/transactions/${transaction.id}`} method="delete" className="text-rose-500 hover:text-rose-800">
-                        Delete
-                      </Link>
-                    </td>
                   </tr>
                 ))}
               </tbody>

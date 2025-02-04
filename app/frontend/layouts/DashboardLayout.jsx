@@ -8,7 +8,7 @@ import {
   MenuItems,
   TransitionChild,
 } from '@headlessui/react'
-import {ChevronDown, Home, Settings, X, Tag, Tickets, Menu as MenuIcon, Search, Bell} from "lucide-react"
+import {ChevronDown, Home, Settings, X, Tag, Tickets, Menu as MenuIcon, Search} from "lucide-react"
 
 import {usePage, Link} from "@inertiajs/react"
 import FlashMessages from "../components/FlashMessages"
@@ -23,13 +23,10 @@ export default function DashboardLayout({children}) {
   const [sidebarOpen, setSidebarOpen] = useState(false)
 
   const navigation = [
-    { name: 'Dashboard', href: '/dashboard', icon: Home },
-    { name: 'Transactions', href: '/transactions', icon: Tickets },
-    { name: 'Categories', href: '/categories', icon: Tag },
-  ].map(item => ({
-    ...item,
-    current: url.startsWith(item.href)
-  }))
+    { name: 'Dashboard', href: '/dashboard', icon: Home, current: url.startsWith('/dashboard') },
+    { name: 'Transactions', href: '/transactions', icon: Tickets, current: url.startsWith('/transactions') },
+    { name: 'Categories', href: '/categories', icon: Tag, current: url.startsWith('/categories') },
+  ]
 
   return (
     <>
@@ -55,9 +52,9 @@ export default function DashboardLayout({children}) {
               </TransitionChild>
               {/* Sidebar component, swap this element with another sidebar if you like */}
               <div className="flex grow flex-col gap-y-5 overflow-y-auto bg-emerald-950 px-6 pb-4">
-                <div className="flex h-16 shrink-0 items-center">
+                <Link href="/dashboard" className="flex h-16 shrink-0 items-center">
                   <h2 className="text-white text-2xl font-bold">Avonomy</h2>
-                </div>
+                </Link>
                 <nav className="flex flex-1 flex-col">
                   <ul role="list" className="flex flex-1 flex-col gap-y-7">
                     <li>
@@ -83,18 +80,6 @@ export default function DashboardLayout({children}) {
                         ))}
                       </ul>
                     </li>
-                    <li className="mt-auto">
-                      <a
-                        href="#"
-                        className="group -mx-2 flex gap-x-3 rounded-md p-2 text-sm/6 font-semibold text-indigo-200 hover:bg-indigo-700 hover:text-white"
-                      >
-                        <Settings
-                          aria-hidden="true"
-                          className="size-6 shrink-0 text-indigo-200 group-hover:text-white"
-                        />
-                        Settings
-                      </a>
-                    </li>
                   </ul>
                 </nav>
               </div>
@@ -106,9 +91,9 @@ export default function DashboardLayout({children}) {
         <div className="hidden lg:fixed lg:inset-y-0 lg:z-10 lg:flex lg:w-72 lg:flex-col">
           {/* Sidebar component, swap this element with another sidebar if you like */}
           <div className="flex grow flex-col gap-y-5 overflow-y-auto bg-emerald-900 px-6 pb-4">
-            <div className="flex h-16 shrink-0 items-center">
+            <Link href="/dashboard" className="flex h-16 shrink-0 items-center">
               <h2 className="text-white text-2xl font-bold">Avonomy</h2>
-            </div>
+            </Link>
             <nav className="flex flex-1 flex-col">
               <ul role="list" className="flex flex-1 flex-col gap-y-7">
                 <li>
@@ -137,19 +122,6 @@ export default function DashboardLayout({children}) {
                       </li>
                     ))}
                   </ul>
-                </li>
-
-                <li className="mt-auto">
-                  <a
-                    href="#"
-                    className="group -mx-2 flex gap-x-3 rounded-md p-2 text-sm/6 font-semibold text-emerald-300 hover:bg-emerald-800 hover:text-white"
-                  >
-                    <Settings
-                      aria-hidden="true"
-                      className="size-6 shrink-0 text-emerald-200 group-hover:text-white"
-                    />
-                    Settings
-                  </a>
                 </li>
               </ul>
             </nav>
@@ -200,9 +172,12 @@ export default function DashboardLayout({children}) {
                     transition
                     className="absolute right-0 z-10 mt-2.5 w-48 origin-top-right rounded-md bg-white py-2 ring-1 shadow-lg ring-gray-900/5 transition focus:outline-hidden data-closed:scale-95 data-closed:transform data-closed:opacity-0 data-enter:duration-100 cursor:pointer data-enter:ease-out data-leave:duration-75 data-leave:ease-in"
                   >
-                      <Link href="/session" as="button" method="delete" className="block px-4 py-2 text-sm/6 text-gray-900 data-focus:bg-gray-50 data-focus:outline-hidden">
-                        Sign out
-                      </Link>
+                    <Link href="/profile" className="block px-4 py-2 text-sm/6 text-gray-900 data-focus:bg-gray-50 data-focus:outline-hidden">
+                      Edit my profile
+                    </Link>
+                    <Link href="/session" as="button" method="delete" className="block px-4 py-2 text-sm/6 text-gray-900 data-focus:bg-gray-50 data-focus:outline-hidden">
+                      Sign out
+                    </Link>
                   </MenuItems>
                 </Menu>
               </div>

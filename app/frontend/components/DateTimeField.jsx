@@ -24,7 +24,7 @@ const DateTimeField = ({ label, name, value, onChange, errors, required = false 
         className={clsx(
           'block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900',
           'border border-gray-300',
-          'focus:border-emerald-500 focus:outline-none focus:ring-2 focus:ring-emerald-500/20',
+          'focus:border-emerald-600 focus:outline-emerald-600 focus:ring-2 focus:ring-transparent',
           'placeholder:text-gray-400 sm:text-sm/6',
           'disabled:cursor-not-allowed disabled:bg-gray-50 disabled:text-gray-500',
           errors && 'border-rose-400 focus:border-rose-400 focus:ring-rose-500/20'

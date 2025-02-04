@@ -1,7 +1,7 @@
-import { Head, usePage } from "@inertiajs/react"
+import { Head } from "@inertiajs/react"
 import NavBar from "~/components/NavBar"
 import FlashMessages from "~/components/FlashMessages"
-const AppLayout = ({ children }) => {
+const SiteLayout = ({ children }) => {
 
   return (
     <main>
@@ -13,4 +13,4 @@ const AppLayout = ({ children }) => {
   )
 }
 
-export default AppLayout
+export default SiteLayout

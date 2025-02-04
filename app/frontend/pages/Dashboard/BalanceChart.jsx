@@ -1,25 +1,11 @@
 import React from 'react';
 import ReactApexChart from 'react-apexcharts';
 
-const BalanceChart = () => {
-  // Generate fake data for the last 14 days
-  const generateData = () => {
-    const data = [];
-    const baseValue = 250;
-    for (let i = 13; i >= 0; i--) {
-      const date = new Date();
-      date.setDate(date.getDate() - i);
-      data.push({
-        x: date.getTime(),
-        y: (baseValue + Math.random() * 250 - 100).toFixed(2)
-      });
-    }
-    return data;
-  };
+const BalanceChart = ({data}) => {
 
   const series = [{
-    name: 'Balance',
-    data: generateData()
+    name: 'Amount spent',
+    data: data
   }];
 
   const options = {

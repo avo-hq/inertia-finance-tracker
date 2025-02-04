@@ -14,17 +14,28 @@ const MoneyField = ({
   // Handle numeric input with 2 decimal places
   const handleChange = (e) => {
     const value = e.target.value.replace(/[^0-9.]/g, '');
+    
+    // Only allow one decimal point and up to 2 decimal places
     if (value === '' || /^\d*\.?\d{0,2}$/.test(value)) {
-      onChange(e);
+      onChange({
+        ...e,
+        target: {
+          ...e.target,
+          value
+        }
+      });
     }
   };
+
+  // Format the display value
+  const displayValue = value === '' ? '' : parseFloat(value).toString();
 
   return (
     <div className="space-y-1.5">
       <label 
         htmlFor={name} 
         className={clsx(
-          'flex text-sm w-full font-medium',
+          'flex text-sm font-medium',
           errors ? 'text-rose-500' : 'text-gray-900'
         )}
       >
@@ -48,7 +59,7 @@ const MoneyField = ({
           inputMode="decimal"
           id={name}
           name={name}
-          value={value}
+          value={displayValue}
           onChange={handleChange}
           placeholder={placeholder}
           required={required}
@@ -73,7 +84,7 @@ const MoneyField = ({
       </div>
       
       {errors && (
-        <p className="text-rose-500 text-sm mt-1">{`${label} ${errors}`}</p>
+        <p className="text-sm text-rose-500 mt-1">{`${label} ${errors}`}</p>
       )}
     </div>
   );

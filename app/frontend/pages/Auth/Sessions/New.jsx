@@ -1,4 +1,4 @@
-import Layout from "~/layouts/AppLayout"
+import SiteLayout from "~/layouts/SiteLayout"
 
 import {useForm} from '@inertiajs/react'
 
@@ -96,6 +96,6 @@ const New = () => {
   )
 }
 
-New.layout = (page) => <Layout>{page}</Layout>
+New.layout = (page) => <SiteLayout>{page}</SiteLayout>
 
 export default New

@@ -1,4 +1,4 @@
-import Layout from "~/layouts/AppLayout"
+import SiteLayout from "~/layouts/SiteLayout"
 import Container from "~/components/Container"
 import { Head } from "@inertiajs/react"
 
@@ -53,12 +53,14 @@ const Home = () => {
 
       {/* Container for Head component */}
       <Container>
-        <Head title="Home - Avonomy" />
+        <Head title="Budget tracker & planner - Avonomy" >
+          <meta name="description" content="Track your finances with Avonomy. Simplify your financial life with our intelligent tracking, thoughtful insights, and practical tools." />
+        </Head>
       </Container>
     </div>
   )
 }
 
-Home.layout = (page) => <Layout>{page}</Layout>
+Home.layout = (page) => <SiteLayout>{page}</SiteLayout>
 
 export default Home
