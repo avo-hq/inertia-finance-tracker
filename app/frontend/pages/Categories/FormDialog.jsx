@@ -6,7 +6,7 @@ import FormGroup from '../../components/FormGroup'
 import Button from '../../components/Button'
 
 export default function FormDialog({open, setOpen}) {
-  const {errors, current_user} = usePage().props;
+  const {errors} = usePage().props;
 
   const {post, data, transform, setData, processing, reset} = useForm({
     name: '',
@@ -20,7 +20,6 @@ export default function FormDialog({open, setOpen}) {
     
     post('/categories', {
       data: transform((data) => {
-        data.user_id = current_user.id;
         return data;
       }),
       onSuccess: () => {
@@ -55,7 +54,6 @@ export default function FormDialog({open, setOpen}) {
               </div>
 
               <form onSubmit={handleSubmit} className="mt-4">
-                <input type="hidden" name="current_user_id" value={1} />
                 <TextInput label="Name" name="name" value={data.name} onChange={(ev) => setData('name', ev.target.value)} errors={errors && errors.name} />
                 <div className="flex items-center justify-between space-x-4 mt-3">
                   <FormGroup>
