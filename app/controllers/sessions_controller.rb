@@ -19,6 +19,6 @@ class SessionsController < ApplicationController
 
   def destroy
     terminate_session
-    redirect_to new_session_path, notice: "Successfully signed out."
+    redirect_to root_path, notice: "Successfully signed out."
   end
 end
