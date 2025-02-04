@@ -23,6 +23,7 @@
 #
 class Category < ApplicationRecord
   belongs_to :user
+  has_many :transactions
   
   extend FriendlyId
   friendly_id :name, use: :slugged
