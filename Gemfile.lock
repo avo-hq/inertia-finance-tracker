@@ -126,7 +126,7 @@ GEM
       activesupport (>= 7.1)
     i18n (1.14.7)
       concurrent-ruby (~> 1.0)
-    inertia_rails (3.10.0)
+    inertia_rails (3.11.0)
       railties (>= 6)
     io-console (0.8.1)
     irb (1.15.2)
@@ -388,7 +388,7 @@ DEPENDENCIES
   debug
   friendly_id (~> 5.5.0)
   groupdate
-  inertia_rails (~> 3.10)
+  inertia_rails (~> 3.11)
   jbuilder
   kamal
   money-rails
