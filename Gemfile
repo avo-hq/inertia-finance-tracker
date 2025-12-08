@@ -42,7 +42,7 @@ gem "inertia_rails", "~> 3.11"
 gem "vite_rails", "~> 3.0"
 
 gem "action_policy"
-gem 'friendly_id', '~> 5.5.0'
+gem 'friendly_id', '~> 5.6.0'
 gem "groupdate"
 gem 'pagy'
 gem 'money-rails'
